@@ -23,3 +23,7 @@ $("a.submit").click(function(value){
 
   $("#guesses").append("<li>"+guess+"</li>");
 });
+
+$("a.success").click(function(){
+  window.location.reload();
+});
