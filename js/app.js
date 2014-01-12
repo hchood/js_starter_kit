@@ -37,7 +37,7 @@ $("a.submit").click(function(value){
     $("#guesses").append("<li>"+guess+"</li>");
 
   } else
-      $("#feedback").replaceWith("<p id='feedback'>Your guess was invalid! Try again...</p>");
+      $("#feedback").replaceWith("<p id='feedback'>Invalid input, must enter a number between 0 and "+randNum+".</p>");
 
 });
 
