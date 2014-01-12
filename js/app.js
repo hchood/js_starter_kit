@@ -14,6 +14,17 @@ function isValid(guess) {
     return true;
 }
 
+function displayFeedback(guess) {
+  if (guess === secretNum){
+    $("#feedback").replaceWith("<p id='feedback'>Congratulations, you've guessed the number in "+numGuesses+" guesses!</p>");
+    showSuccessButton();
+  } else if (guess < secretNum)
+    $("#feedback").replaceWith("<p id='feedback'>"+guess+" was too low, try again...</p>");
+  else if (guess > secretNum)
+    $("#feedback").replaceWith("<p id='feedback'>"+guess+" was too high, try again...</p>");
+    $("#guesses").append("<li>"+guess+"</li>");
+}
+
 $("div.alert-box").text("Guess a number between 0 and " + randNum);
 
 $("a.submit").click(function(value){
@@ -22,23 +33,11 @@ $("a.submit").click(function(value){
   var guess = parseInt(guessString, 10);
 
   if (isValid(guess)){
-
     numGuesses += 1;
     $("p.hidden").show();
-
-    if (guess === secretNum){
-      $("#feedback").replaceWith("<p id='feedback'>Congratulations, you've guessed the number in "+numGuesses+" guesses!</p>");
-      showSuccessButton();
-    } else if (guess < secretNum)
-      $("#feedback").replaceWith("<p id='feedback'>"+guess+" was too low, try again...</p>");
-    else if (guess > secretNum)
-      $("#feedback").replaceWith("<p id='feedback'>"+guess+" was too high, try again...</p>");
-
-    $("#guesses").append("<li>"+guess+"</li>");
-
-  } else
+    displayFeedback(guess);
+   } else
       $("#feedback").replaceWith("<p id='feedback'>Invalid input, must enter a number between 0 and "+randNum+".</p>");
-
 });
 
 $("a.success").click(function(){
